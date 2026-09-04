@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+:root {
+  --color-cream: #fdfbf7;
+  --color-beige: #f5ebe0;
+  --color-brown-dark: #2c1e16;
+  --color-brown-medium: #4a3728;
+  --color-brown-light: #8c6d53;
+  --color-gold: #d4af37;
+  --color-gold-glow: rgba(212, 175, 55, 0.4);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-cinzel: 'Cinzel', serif;
+  --font-handwritten: 'Caveat', cursive;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #120c08;
+  color: #fdfbf7;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.font-handwritten {
+  font-family: var(--font-handwritten);
+}
+
+/* Paper Texture overlay */
+.paper-texture {
+  background-color: #f7f2e7;
+  background-image: radial-gradient(#d4c3a3 0.75px, transparent 0.75px), radial-gradient(#d4c3a3 0.75px, #f7f2e7 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  box-shadow: inset 0 0 40px rgba(74, 55, 40, 0.15);
+}
+
+.paper-dark-texture {
+  background-color: #2b1d14;
+  background-image: radial-gradient(#4a3626 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+/* Room Soft Golden Lamp Light Overlay */
+.room-lamp-off {
+  background: radial-gradient(circle at 75% 35%, rgba(212, 175, 55, 0.08) 0%, rgba(10, 6, 4, 0.85) 60%);
+}
+
+.room-lamp-on {
+  background: radial-gradient(circle at 75% 35%, rgba(255, 215, 120, 0.45) 0%, rgba(212, 175, 55, 0.25) 35%, rgba(20, 12, 7, 0.75) 75%);
+  transition: background 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glow effects */
+.glow-door {
+  box-shadow: 0 0 35px 8px rgba(212, 175, 55, 0.4), inset 0 0 25px rgba(255, 225, 140, 0.3);
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+.glow-interactive {
+  box-shadow: 0 0 25px 6px rgba(245, 205, 90, 0.6), 0 0 50px 12px rgba(212, 175, 55, 0.25);
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(245, 215, 110, 0.7));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(255, 235, 150, 0.95));
+    transform: scale(1.02);
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(30, 20, 14, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: #8c6d53;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* 3D Perspective Container */
+.perspective-1000 {
+  perspective: 1000px;
+}

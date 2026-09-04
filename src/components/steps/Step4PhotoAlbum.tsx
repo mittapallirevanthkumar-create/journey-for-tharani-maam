@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import type { PhotoItem } from '../../types';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { audioEngine } from '../../services/audioEngine';
+import { isMediaVideo } from '../../services/photoStore';
 
 interface Step4PhotoAlbumProps {
   isOpen: boolean;
@@ -77,10 +78,13 @@ export const Step4PhotoAlbum: React.FC<Step4PhotoAlbumProps> = ({
           <div className="p-3 bg-[#fdfbf7] rounded-xl shadow-2xl max-w-2xl w-full border-4 border-[#4a3728]">
             <div className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-lg bg-[#120c08] flex items-center justify-center">
               {currentPhoto ? (
-                currentPhoto.mediaType === 'video' || currentPhoto.url.startsWith('data:video/') ? (
+                isMediaVideo(currentPhoto) ? (
                   <video
+                    key={currentPhoto.id || currentPhoto.url}
                     src={currentPhoto.url}
                     controls
+                    playsInline
+                    preload="auto"
                     className="w-full h-full object-contain rounded-lg"
                   />
                 ) : (

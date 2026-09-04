@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import type { StepId, PhotoItem } from '../types';
 import { Sparkles, Book, Image as ImageIcon, Gift, Lightbulb, Sun, Clock } from 'lucide-react';
 import { audioEngine } from '../services/audioEngine';
+import { isMediaVideo } from '../services/photoStore';
 
 interface StudyRoomProps {
   currentStep: StepId;
@@ -157,8 +158,8 @@ export const StudyRoom: React.FC<StudyRoomProps> = ({
             >
               <div className="w-full h-full bg-[#2c1e16] rounded border border-[#d4c3a3] overflow-hidden flex flex-col items-center justify-center text-center relative">
                 {previewPhoto ? (
-                  previewPhoto.mediaType === 'video' || previewPhoto.url.startsWith('data:video/') ? (
-                    <video src={previewPhoto.url} className="w-full h-full object-cover rounded pointer-events-none" />
+                  isMediaVideo(previewPhoto) ? (
+                    <video src={previewPhoto.url} muted playsInline autoPlay loop className="w-full h-full object-cover rounded pointer-events-none" />
                   ) : (
                     <img src={previewPhoto.url} alt="Frame" className="w-full h-full object-cover rounded pointer-events-none" />
                   )

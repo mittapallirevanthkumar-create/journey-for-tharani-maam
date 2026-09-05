@@ -16,8 +16,6 @@ import { Step7Lamp } from './components/steps/Step7Lamp';
 import { Step8PhotoFrame } from './components/steps/Step8PhotoFrame';
 import { Step9GiftBox } from './components/steps/Step9GiftBox';
 
-import { AdminModal } from './components/AdminModal';
-
 export function App() {
   const [currentStep, setCurrentStep] = useState<StepId>(1);
   const [isLampOn, setIsLampOn] = useState(false);
@@ -25,10 +23,6 @@ export function App() {
 
   // Photos
   const [photos, setPhotos] = useState<PhotoItem[]>([]);
-
-  // Admin Auth State
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showAdmin, setShowAdmin] = useState(false);
 
   // Modals
   const [showDiary, setShowDiary] = useState(false);
@@ -40,33 +34,15 @@ export function App() {
   const [showGift, setShowGift] = useState(false);
 
   useEffect(() => {
-    // Load photos from IndexedDB
+    // Load photos
     photoStore.getPhotos().then((loadedPhotos) => {
       setPhotos(loadedPhotos);
     });
-
-    // Keyboard shortcut for quick admin toggle (Ctrl + Shift + A)
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-        setShowAdmin(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const handleToggleMute = () => {
     const muted = audioEngine.toggleMute();
     setIsMuted(muted);
-  };
-
-  const handleAdminLogin = (password: string): boolean => {
-    if (password === 'admin123' || password === 'tharani') {
-      setIsAdmin(true);
-      return true;
-    }
-    return false;
   };
 
   // Step Transitions
@@ -207,26 +183,15 @@ export function App() {
         onRestartJourney={handleRestartJourney}
       />
 
-      {/* Admin Photo Manager Modal */}
-      <AdminModal
-        isOpen={showAdmin}
-        onClose={() => setShowAdmin(false)}
-        photos={photos}
-        onPhotosUpdated={setPhotos}
-        isAuthenticated={isAdmin}
-        onLogin={handleAdminLogin}
-      />
-
       {/* Guided Step Bottom Navbar */}
       <StepGuide
         currentStep={currentStep}
         isMuted={isMuted}
         onToggleMute={handleToggleMute}
-        onOpenAdmin={() => setShowAdmin(true)}
-        isAdmin={isAdmin}
       />
     </div>
   );
 }
 
 export default App;
+

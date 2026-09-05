@@ -12,13 +12,13 @@ interface StepGuideProps {
 }
 
 const STEP_HINTS: Record<StepId, string> = {
-  1: '➡️ Click the Door to Begin',
-  2: '➡️ Click the Diary',
-  3: '➡️ Click the Photo Album',
-  4: '➡️ Click the Bookshelf',
-  5: '➡️ Click the Window',
+  1: '➡️ Tap the Door to Begin',
+  2: '➡️ Tap the Diary',
+  3: '➡️ Tap the Photo Album',
+  4: '➡️ Tap the Bookshelf',
+  5: '➡️ Tap the Window',
   6: '➡️ Turn on the Lamp',
-  7: '➡️ Click the Gift Box',
+  7: '➡️ Tap the Gift Box',
   8: '➡️ Open the Gift Box',
   9: '✨ Journey Complete! Explore any item ❤️'
 };
